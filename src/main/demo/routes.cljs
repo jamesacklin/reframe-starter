@@ -11,18 +11,15 @@
 (defroute home "/"  [query-params]
   (*dispatch* [:routes/home query-params]))
 
-(defroute about "/about" []
+(defroute about "/#/about" []
   (*dispatch* [:routes/about]))
 
 (defn app-routes [dispatch]
-  (accountant/configure-navigation!
-   {:nav-handler
-    (fn [path]
-      (binding [*dispatch* dispatch]
-        (secretary/dispatch! path)))
-    :path-exists?
-    (fn [path]
-      (secretary/locate-route path))})
+  (accountant/configure-navigation! {:nav-handler  (fn [path]
+                                                     (binding [*dispatch* dispatch]
+                                                       (secretary/dispatch! path)))
+                                     :path-exists? (fn [path]
+                                                     (secretary/locate-route path))})
 
   (accountant/dispatch-current!))
 

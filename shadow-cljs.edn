@@ -5,7 +5,7 @@
                 [secretary "1.2.3"]
                 [venantius/accountant "0.2.4"]]
 
- :source-paths ["src/dev" "src/main" "src/test"]
+ :source-paths ["src/dev" "src/main"]
 
  :nrepl        {:port 8230}
 
